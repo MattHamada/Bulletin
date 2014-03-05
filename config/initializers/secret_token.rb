@@ -9,4 +9,18 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Bulletin::Application.config.secret_key_base = 'f8f175e0e4af10a5a406b4af954522b04ee6e193c1988c2f929a30e52f4b6292fb8cb80aca798941cf53adf1ad30206a057953070965942b4c77e966cbbe6ecc'
+
+require 'securerandom'
+
+def	secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    File.read(token_file).chomp
+  else
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Bulletin::Application.config.secret_key_base = secure_token
