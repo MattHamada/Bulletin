@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.2.0'
 
 
 # Use SCSS for stylesheets
@@ -11,7 +11,7 @@ gem 'bootstrap-sass', '3.0.3.0'
 gem 'font-awesome-rails'
 
 gem 'bcrypt-ruby', '3.1.2'
-gem 'faker', '1.1.2'
+gem 'faker'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 
