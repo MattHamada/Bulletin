@@ -8,7 +8,8 @@ class SubBoard < ActiveRecord::Base
   validate :title_unique_in_board
 
   def title_unique_in_board
+    #must compare to  < 2 and not 0 as the one being validated will be counted if matched
     errors.add(:title, 'Sub-board title must be unique in board') unless
-        self.board.sub_boards.where(title: self.title).empty?
+        self.board.sub_boards.where(title: self.title).count < 2
   end
 end

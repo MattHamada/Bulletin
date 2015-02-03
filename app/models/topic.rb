@@ -7,8 +7,7 @@ class Topic < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'   #topic creator
   belongs_to :sub_board
 
-  validates :title, presence: true, uniqueness: {case_sensitive: false },
-            length: {maximum: 100, minimum: 2 }
+  validates :title, presence: true, length: {maximum: 100, minimum: 2 }
 
   before_create :set_post_count
 
