@@ -1,9 +1,9 @@
-class SubBoardsController < ApplicationController
+class Boards::SubBoardsController < ApplicationController
 
   before_action :get_sub_board
 
 
-  def index
+  def show
     @topics = @sub_board.topics.order_by_time
   end
 

@@ -4,8 +4,10 @@ Bulletin::Application.routes.draw do
 
   root 'static_pages#index'
 
+  resources :topics
+
   resources :boards do
-    resources :sub_boards
+    resources :sub_boards, controller: 'boards/sub_boards'
   end
 
 

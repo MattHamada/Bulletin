@@ -1,0 +1,19 @@
+<div class="container">
+  <table class="table table-striped">
+      <tr>
+        <th>Topic</th>
+        <th>Created By</th>
+        <th>Created At</th>
+        <th>Last Post</th>
+      </tr>
+      <tbody>
+        <% @topics.each do |topic| %>
+          <td><%= link_to topic.title, topic_path(topic) %></td>
+          <td><%= topic.creator_username %></td>
+          <td><%= topic.created_at_pretty %></td>
+          <td><%= topic.updated_at_pretty %></td>
+        <% end %>
+      </tbody>
+
+  </table>
+</div>

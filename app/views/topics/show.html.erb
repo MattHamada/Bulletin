@@ -1,0 +1,13 @@
+<div class="container">
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-xs-3">
+        <%= post.user_username %>
+      </div>
+      <div class="col-xs-9">
+        <%= post.content %>
+      </div>
+    </div>
+    <hr/>
+  <% end %>
+</div>
