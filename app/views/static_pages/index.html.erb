@@ -1,0 +1,11 @@
+<div class="container">
+  <% @boards.each do |board| %>
+    <div class="container">
+      <hr/>
+      <h3><%= board.title %></h3>
+      <% board.sub_boards.each do |sub_board| %>
+        <%= link_to "#{sub_board.title}", board_sub_board_path(board, sub_board) %><br/>
+      <% end %>
+    </div>
+  <% end %>
+</div>

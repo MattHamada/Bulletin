@@ -1,0 +1,17 @@
+<div class="container">
+  <table class="table table-striped">
+      <tr>
+        <th>Topic</th>
+        <th>Created By</th>
+        <th>Created At</th>
+        <th>Last Post</th>
+      </tr>
+      <tbody>
+      <% @topics.each do |topic| %>
+        <td><%= topic.title  %></td>
+        <td><%= topic.creator %></td>
+        <td><%= topic.created_at_pretty %></td>
+        <td><%= topic.last_post_pretty %></td>
+      </tbody>
+  </table>
+</div>

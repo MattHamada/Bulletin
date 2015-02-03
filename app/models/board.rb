@@ -6,6 +6,6 @@ class Board < ActiveRecord::Base
   has_many :topics, through: :sub_boards
 
   validates :title, presence: true, uniqueness: {case_sensitive: false },
-            length: {maximum: 50, minimum: 2 }
+            length: {maximum: 100, minimum: 2 }
 
 end

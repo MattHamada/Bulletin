@@ -4,6 +4,11 @@ Bulletin::Application.routes.draw do
 
   root 'static_pages#index'
 
+  resources :boards do
+    resources :sub_boards
+  end
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
