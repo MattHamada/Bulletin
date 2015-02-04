@@ -4,7 +4,13 @@ Bulletin::Application.routes.draw do
 
   root 'static_pages#index'
 
+  match '/',        to: 'static_pages#index', via: 'get'
+  match '/signin',  to: 'sessions#new',       via: 'get'
+  match '/signout', to: 'sessions#destroy',   via: 'delete'
+
+  resources :sessions, only: [:new, :create, :destroy]
   resources :topics
+  resources :users
 
   resources :boards do
     resources :sub_boards, controller: 'boards/sub_boards'

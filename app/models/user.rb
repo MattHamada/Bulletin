@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   before_validation :generate_slug
 
   before_save { self.email = email.downcase }
+  before_save { self.username = username.downcase }
   before_create :create_remember_token
 
   has_secure_password
