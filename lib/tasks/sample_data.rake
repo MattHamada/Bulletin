@@ -13,7 +13,7 @@ namespace :db do
                     board_id: 1)
 
     Topic.create!(title: Faker::Lorem.sentence(3),
-                 user_id: 1,
+                 creator_id: 1,
                  sub_board_id: 1)
 
     Post.create!(content: Faker::Lorem.paragraph(4),
@@ -21,7 +21,7 @@ namespace :db do
                 topic_id: 1)
 
     Topic.create!(title: Faker::Lorem.sentence(3),
-                 user_id: 1,
+                 creator_id: 1,
                  sub_board_id: 2)
     Post.create!(content: Faker::Lorem.paragraph(4),
                 user_id: 1,
@@ -39,7 +39,7 @@ namespace :db do
                  sub_board_id: 3)
 
     Post.create!(content: Faker::Lorem.paragraph(4),
-                 creator_id: 1,
+                 user_id: 1,
                  topic_id: 3)
 
     Topic.create!(title: Faker::Lorem.sentence(3),
@@ -47,7 +47,7 @@ namespace :db do
                  sub_board_id: 4)
 
     Post.create!(content: Faker::Lorem.paragraph(4),
-                creator_id: 1,
+                user_id: 1,
                 topic_id: 4)
 
     User.create!(username: 'testUser',
@@ -55,5 +55,27 @@ namespace :db do
                 password_confirmation: 'Qwerty123',
                 email: 'user@example.com')
 
+    20.times do
+      board = rand_int(1,5)
+      Topic.create!(title: Faker::Lorem.sentence(3),
+                    creator_id: 1,
+                    sub_board_id: board)
+    end
+
+    200.times do
+      topic = rand_int(1,21)
+      Post.create!(content: Faker::Lorem.paragraph(4),
+                   user_id: 1,
+                   topic_id: topic)
+    end
+
   end
+end
+
+def rand_in_range(from, to)
+  rand * (to - from) + from
+end
+
+def rand_int(from, to)
+  rand_in_range(from, to).to_i
 end
