@@ -8,10 +8,12 @@
       </tr>
       <tbody>
         <% @topics.each do |topic| %>
-          <td><%= link_to topic.title, topic_path(topic) %></td>
-          <td><%= topic.creator_username %></td>
-          <td><%= topic.created_at_pretty %></td>
-          <td><%= topic.updated_at_pretty %></td>
+          <tr>
+            <td><%= link_to topic.title, topic_path(topic) %></td>
+            <td><%= topic.creator_username %></td>
+            <td><%= topic.created_at_pretty %></td>
+            <td><%= topic.updated_at_pretty %></td>
+          </tr>
         <% end %>
       </tbody>
 
