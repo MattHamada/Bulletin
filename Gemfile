@@ -48,6 +48,8 @@ group :development do
   gem 'bullet'
   #for viewing emails sent
   gem 'letter_opener'
+  #security auditing
+  gem 'brakeman', require: false
 end
 
 group :development, :test do
