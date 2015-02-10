@@ -10,7 +10,7 @@ Bulletin::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :topics
-  resources :users, only: [:new, :create, :edit, :update, :destroy]
+  resources :users
 
   resources :boards do
     resources :sub_boards, controller: 'boards/sub_boards'
