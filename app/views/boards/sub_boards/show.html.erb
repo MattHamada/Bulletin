@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4"><%= link_to 'New Topic', new_topic_path(sub_board: @sub_board.id) %></div>
+    <div class="col-md-4"><%= link_to 'New Topic', new_topic_path(sub_board_id: @sub_board.id) unless current_user.nil?%></div>
   </div>
   <table class="table table-striped">
       <tr>
@@ -19,6 +19,5 @@
           </tr>
         <% end %>
       </tbody>
-
   </table>
 </div>

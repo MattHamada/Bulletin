@@ -13,7 +13,7 @@ class Topic < ActiveRecord::Base
 
   before_create :set_post_count
 
-  scope :order_by_time, -> { order("updated_at ASC") }
+  scope :order_by_time, -> { order("updated_at DESC") }
 
 
   def set_post_count

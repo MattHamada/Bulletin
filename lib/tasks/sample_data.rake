@@ -4,6 +4,11 @@ namespace :db do
 
     Forum.create!(name: 'My Forum')
 
+    User.create!(username: 'testUser',
+                 password: 'Qwerty123',
+                 password_confirmation: 'Qwerty123',
+                 email: 'user@example.com')
+
     Board.create!(title: 'Cool Stuff',
                  forum_id: 1)
 
@@ -50,10 +55,7 @@ namespace :db do
                 user_id: 1,
                 topic_id: 4)
 
-    User.create!(username: 'testUser',
-                password: 'Qwerty123',
-                password_confirmation: 'Qwerty123',
-                email: 'user@example.com')
+
 
     20.times do
       board = rand_int(1,5)
