@@ -13,8 +13,24 @@ describe User do
   it { should respond_to :password }
   it { should respond_to :password_confirmation }
   it { should respond_to :remember_token }
-  it { should respond_to :is_admin }
   it { should respond_to :topics }
+  it { should respond_to :post_count }
+
+  describe 'post count' do
+    describe 'post count set to 0 on create' do
+      before { @user.save }
+      it { @user.post_count.should eq 0 }
+    end
+    describe 'post count should increment when new post made by user' do
+      before do
+        Post.create(content: 'My post text...',
+                    topic_id: 1,
+                    user_id: @user.id)
+      end
+      it { @user.post_count.should eq 1 }
+    end
+  end
+
 
   describe 'bad parameters' do
     describe 'username' do

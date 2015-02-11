@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_save { self.username = username.downcase }
   before_create :create_remember_token
+  before_create { self.post_count = 0 }
 
   has_secure_password
   has_attached_file :avatar, :styles => { :default => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -24,7 +25,7 @@ class User < ActiveRecord::Base
                        :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
 
   def generate_slug
-    self.slug ||= username.parameterize if self.slug.nil?
+    self.slug ||= username.parameterize
   end
 
   def to_param

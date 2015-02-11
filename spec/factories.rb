@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :forum do
-    title 'Test Forum'
+    name 'Test Forum'
   end
   factory :board do
     title    'TestBoard'

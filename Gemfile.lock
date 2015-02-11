@@ -316,7 +316,7 @@ DEPENDENCIES
   bootstrap-will_paginate (= 0.0.9)
   brakeman
   bullet
-  capybara (= 2.2.1)
+  capybara
   capybara-webkit
   coffee-rails (~> 4.0.0)
   cucumber-rails (= 1.4.0)

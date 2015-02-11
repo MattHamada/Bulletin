@@ -33,4 +33,7 @@ Bulletin::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  #dont suppress callback errors in tests
+  config.active_record.raise_in_transactional_callbacks = true
 end
