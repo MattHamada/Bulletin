@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe Post do
   let(:topic) { FactoryGirl.create(:topic) }
+  let(:user)  { FactoryGirl.create(:user) }
   before { @post = Post.new(content: 'My post text...',
-                            topic_id: topic.id) }
+                            topic_id: topic.id,
+                            user_id: user.id) }
   subject { @post }
 
   it { should respond_to :content }
@@ -26,7 +28,10 @@ describe Post do
   end
 
   describe 'making a post should update the topic update time' do
-    before { @post.save }
+    before do
+      user.save
+      @post.save
+    end
     it { @post.updated_at.to_s.should eq @post.topic.updated_at.to_s}
   end
 end

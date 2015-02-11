@@ -17,7 +17,9 @@ class Post < ActiveRecord::Base
   end
 
   def update_user_post_count
-    self.user.post_count += 1
+    current_count = self.user.post_count
+    self.user.update_attribute(:post_count, (current_count + 1))
+    new_count = user.post_count
   end
 
 

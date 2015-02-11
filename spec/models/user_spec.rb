@@ -23,9 +23,11 @@ describe User do
     end
     describe 'post count should increment when new post made by user' do
       before do
+        @user.save
         Post.create(content: 'My post text...',
                     topic_id: 1,
                     user_id: @user.id)
+        @user.reload
       end
       it { @user.post_count.should eq 1 }
     end
