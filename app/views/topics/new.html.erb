@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>New Topic</strong>
+        </div>
+        <div class="panel-body">
+        <%= form_for(@topic, html: { class: 'form', role: 'form' }) do |f| %>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-1">
+              <div class="form-group">
+                <%= f.label(:title) %>
+                <%= f.text_field :title, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-1">
+              <div class="form-group">
+                <%= f.label(:post_text) %>
+                <%= f.text_area(:post_text, class: 'form-control') %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div style="text-align: center">
+              <%= f.submit 'Create', class: 'btn btn-lg btn-primary' %>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
