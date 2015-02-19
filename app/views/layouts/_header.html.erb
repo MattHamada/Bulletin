@@ -7,5 +7,10 @@
     <%= link_to 'Create account', new_user_path if current_user.nil? %>
     <%= link_to 'Sign out', signout_path, method: :delete unless current_user.nil? %>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= render_breadcrumbs %>
+    </div>
+  </div>
 </div>
 <hr/>

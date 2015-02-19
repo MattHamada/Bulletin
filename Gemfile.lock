@@ -68,6 +68,7 @@ GEM
       ruby_parser (~> 3.5.0)
       sass (~> 3.0)
       terminal-table (~> 1.4)
+    breadcrumbs_on_rails (2.3.0)
     builder (3.2.2)
     bullet (4.8.0)
       activesupport
@@ -315,6 +316,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate (= 0.0.9)
   brakeman
+  breadcrumbs_on_rails
   bullet
   capybara
   capybara-webkit

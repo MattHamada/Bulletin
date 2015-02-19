@@ -4,6 +4,8 @@ class Boards::SubBoardsController < ApplicationController
 
 
   def show
+    add_breadcrumb @sub_board.board.title, root_path
+    add_breadcrumb @sub_board.title, board_sub_board_path(@sub_board.board, @sub_board)
     @topics = @sub_board.topics.order_by_time
   end
 

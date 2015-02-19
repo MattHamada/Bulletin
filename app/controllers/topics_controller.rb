@@ -24,6 +24,9 @@ class TopicsController < ApplicationController
   end
 
   def show
+    add_breadcrumb @topic.sub_board.board.title, root_path
+    add_breadcrumb @topic.sub_board.title, board_sub_board_path(@topic.sub_board.board, @topic.sub_board)
+    add_breadcrumb @topic.title, topic_path(@topic)
     @posts = @topic.posts.order_by_time
   end
 
