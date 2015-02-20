@@ -1,4 +1,8 @@
+
 <div class="container">
+  <div class="row">
+    <%= link_to 'Post new message', new_topic_post_path(@topic) if current_user %>
+  </div> <hr/>
   <% @posts.each do |post| %>
     <div class="row">
       <div class="col-xs-3">

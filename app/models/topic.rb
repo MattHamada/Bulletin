@@ -3,7 +3,7 @@ require 'time_formatting'
 class Topic < ActiveRecord::Base
   include TimeFormatting
 
-  has_many   :posts
+  has_many   :posts, dependent: :destroy
   belongs_to :creator, class_name: 'User'   #topic creator
   belongs_to :sub_board
 

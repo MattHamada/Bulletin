@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   validates :content, presence: true, length: {maximum: 1024, minimum: 1 }
 
   before_update :update_topic_time
+  before_create :update_topic_time
   before_create :update_user_post_count
 
   scope :order_by_time, -> { order("updated_at DESC") }
