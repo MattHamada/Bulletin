@@ -4,11 +4,11 @@ Bulletin is a web forum app running on <b>rails 4.2.0</b> powered by
 <b>Ruby 2.2.0</b>  The project is currently in alpha stage; pull requests
 are welcome.
 
-== Testing
+=== Testing
 Currently the app has an <b>Rspec 3.x</b> test suite.  Most tests are request specs to
 emulate user interaction with the website.
 
-== Dependencies
+=== Dependencies
 Development and test environments use *sqlite3* and require a copy on the host
 machine.  Production is currently set for postgreSQL for heroku compatibility.
 You should not need postgreSQL installed for development use.
@@ -17,12 +17,12 @@ Image uploading currently uses paperclip.  *ImageMagick* is required to be
 installed to make full use of this plugin (image resizing, etc).  It can be
 found at http://www.imagemagick.org
 
-== Database setup
+=== Database setup
 To get things running first run <tt>rake db:migrate</tt>  Sample data is also
 included for testing and can be loaded with <tt>rake db:populate</tt>  More info
 on what data is loaded can be found in <tt>lib/tasks/sample_data.rake</tt>
 
-== Committing
+=== Committing
 Please fork a new branch off master for any pull requests.  Make sure all
 changes are covered with <b>passing</b> Rspec tests.  Submit a pull request for
 for your branch.  I will merge it with master.
