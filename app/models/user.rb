@@ -10,12 +10,15 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: {case_sensitive: false},
                     email_format: true
   validates :slug, uniqueness: true
+  validates :signature, length: { maximum: 100 }
+
   before_create :generate_slug
 
   before_save { self.email = email.downcase }
   before_save { self.username = username.downcase }
   before_create :create_remember_token
   before_create { self.post_count = 0 }
+  before_create { self.signature = '' }
 
   has_secure_password
   has_attached_file :avatar, :styles => { :default => "200x200>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"

@@ -14,7 +14,7 @@ machine.  Production is currently set for postgreSQL for heroku compatibility.
 You should not need postgreSQL installed for development use.
 
 Image uploading currently uses paperclip.  *ImageMagick* is required to be
-installed to make full use of this plugin (image resizing, etc).  It can be
+installed to make full use of this gem (image resizing, etc).  It can be
 found at http://www.imagemagick.org
 
 === Database setup

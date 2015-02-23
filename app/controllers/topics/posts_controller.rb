@@ -9,7 +9,9 @@ class Topics::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    pp = post_params
+    content = pp[:content] + "\n---\n#{current_user.signature}"
+    @post = Post.new(content: content)
     @post.topic = @topic
     @post.user = current_user
     if @post.save

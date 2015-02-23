@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+  let(:topic) { FactoryGirl.create(:topic) }
   before { @user = User.new(username: 'testUser',
                             email: 'user@example.com',
                             password: 'Foobar1',
@@ -15,6 +16,7 @@ describe User do
   it { should respond_to :remember_token }
   it { should respond_to :topics }
   it { should respond_to :post_count }
+  it { should respond_to :signature }
 
   describe 'post count' do
     describe 'post count set to 0 on create' do
@@ -23,6 +25,7 @@ describe User do
     end
     describe 'post count should increment when new post made by user' do
       before do
+        topic.save
         @user.save
         Post.create(content: 'My post text...',
                     topic_id: 1,
@@ -33,6 +36,12 @@ describe User do
     end
   end
 
+  describe 'signature' do
+    describe 'signature set to blank as default' do
+      before { @user.save}
+      it { @user.signature.should eq '' }
+    end
+  end
 
   describe 'bad parameters' do
     describe 'username' do

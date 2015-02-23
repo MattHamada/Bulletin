@@ -25,5 +25,6 @@ FactoryGirl.define do
     email                 'user@example.com'
     password              'Qwerty123'
     password_confirmation 'Qwerty123'
+    signature             'Boo Radley was here'
   end
 end
