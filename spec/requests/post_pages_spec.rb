@@ -23,16 +23,25 @@ describe 'Posting' do
       click_link sub_board.title
       click_link topic.title
       click_link 'Post new message'
-      fill_in  'post_content', with: 'content'
-      click_button 'Post Message'
     end
-    describe 'post should have users signature' do
+    describe 'post should have post content and users signature' do
+      before do
+        fill_in  'post_content', with: 'content'
+        click_button 'Post Message'
+      end
       it { should have_content user.signature }
-    end
-    describe 'post should have post' do
       it { should have_content 'content' }
     end
+    describe 'cannot blank post' do
+      before { click_button 'Post Message' }
+      it { should have_content "Content can't be blank" }
+    end
+    describe 'Cannot post larger than 1024 char' do
+      before do
+        fill_in 'post_content', with: 'a'*1025
+        click_button 'Post Message'
+      end
+      it { should have_content 'Content is too long (maximum is 1024 characters)'}
+    end
   end
-
-
 end

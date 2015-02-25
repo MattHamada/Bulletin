@@ -4,6 +4,8 @@ require 'helpers/has_image'
 describe 'Create Account' do
   let(:forum) { FactoryGirl.create(:forum) }
   let(:board) { FactoryGirl.create(:board) }
+  let(:user) { FactoryGirl.create(:user) }
+
   # let(:sub_board) { FactoryGirl.create(:sub_board) }
   # let(:topic) { FactoryGirl.create(:topic) }
   subject { page }
@@ -56,7 +58,6 @@ describe 'Create Account' do
     end
   end
   describe 'User profile page' do
-    let(:user) { FactoryGirl.create(:user) }
     before do
       user.save
       visit user_path(user)
@@ -65,5 +66,58 @@ describe 'Create Account' do
     it { should have_content user.email }
     it { should have_image 'default/missing.png'}
     it { should have_content user.post_count }
+  end
+
+  describe 'Sign in user' do
+    before do
+      user.save
+      visit root_path
+      click_link 'Sign in'
+    end
+    describe 'with invalid email' do
+      before do
+        fill_in 'session_username', with: 'fakeemail@email.com'
+        fill_in 'session_password', with: user.password
+        click_button 'SIGN IN'
+      end
+      it { should have_content 'Invalid username/password combination' }
+      it { should have_content 'Sign in' }
+      it { should_not have_content 'Sign out'}
+    end
+    describe 'with invalid password' do
+      before do
+        fill_in 'session_username', with: user.username
+        fill_in 'session_password', with: 'pass'
+        click_button 'SIGN IN'
+      end
+      it { should have_content 'Invalid username/password combination' }
+      it { should have_content 'Sign in' }
+      it { should_not have_content 'Sign out'}
+    end
+    describe 'with valid info' do
+      before do
+        fill_in 'session_username', with: user.username
+        fill_in 'session_password', with: user.password
+        click_button 'SIGN IN'
+      end
+      it { should have_content 'Sign out' }
+      it { should_not have_content 'Sign in'}
+    end
+  end
+
+  describe 'Sign out user' do
+    before do
+      user.save
+      visit root_path
+      click_link 'Sign in'
+      fill_in 'session_username', with: user.username
+      fill_in 'session_password', with: user.password
+      click_button 'SIGN IN'
+    end
+    describe 'it should sign the user out when sign out clicked' do
+      before { click_link 'Sign out' }
+      it { should have_content 'Sign in' }
+      it { should_not have_content 'Sign out' }
+    end
   end
 end

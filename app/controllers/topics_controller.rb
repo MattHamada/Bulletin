@@ -5,20 +5,21 @@ class TopicsController < ApplicationController
   def new
     sub_board = SubBoard.find(params[:sub_board_id])
     @topic = Topic.new(sub_board_id: sub_board.id)
+    @post = Post.new
   end
 
   def create
     post_text = params[:topic][:post_text]
     @topic = Topic.new(topic_params)
     @topic.creator_id = current_user.id
-    if @topic.save
-      @post = Post.create(content: post_text,
-                          user_id: current_user.id,
-                          topic_id: @topic.id)
+    @post = Post.new(content: post_text,
+                        user_id: current_user.id)
+    if @post.valid? && @topic.save
+      @post.topic_id = @topic.id
+      @post.save
       redirect_to topic_path(@topic)
     else
-      flash[:danger] = @topic.errors.full_message
-      render new_topic_path(sub_board: params[:topic][:sub_board_id])
+      render new_topic_path
     end
 
   end

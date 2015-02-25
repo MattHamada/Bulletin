@@ -5,6 +5,7 @@
     </div>
     <div class="panel-body">
       <%= form_for @post, url: topic_posts_path, html: { class: 'form', role: 'form' } do |f| %>
+        <%= render 'layouts/errors', object: @post if @post.errors.any? %>
         <div class="form-group">
           <%= f.label :content %>
           <%= f.text_area :content, class: 'form-control' %>

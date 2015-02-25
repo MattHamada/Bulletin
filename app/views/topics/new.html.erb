@@ -7,7 +7,9 @@
         </div>
         <div class="panel-body">
         <%= form_for(@topic, html: { class: 'form', role: 'form' }) do |f| %>
-          <div class="row">
+            <%= render 'layouts/errors', object: @topic if @topic.errors.any? %>
+            <%= render 'layouts/errors', object: @post if @post.errors.any? %>
+            <div class="row">
             <div class="col-md-8 col-md-offset-1">
               <div class="form-group">
                 <%= f.label(:title) %>
