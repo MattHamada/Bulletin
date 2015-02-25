@@ -38,7 +38,9 @@ describe SubBoard do
         it { expect(@sub_board2).to be_valid }
       end
       describe 'duplicate names not allowed in same board' do
-        before { @sub_board2 = SubBoard.create(title: 'Test Board', board_id: 1)}
+        before do
+          @sub_board2 = SubBoard.create(title: 'Test Board', board_id: 1)
+        end
         it { expect(@sub_board2).not_to be_valid }
       end
     end
