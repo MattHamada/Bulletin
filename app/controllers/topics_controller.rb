@@ -19,6 +19,7 @@ class TopicsController < ApplicationController
       @post.save
       redirect_to topic_path(@topic)
     else
+      @topic.errors.messages.merge!(@post.errors.messages) unless @topic.valid?
       render new_topic_path
     end
 
@@ -37,7 +38,7 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:title, :sub_board_id)
+      params.require(:topic).permit(:title, :sub_board_id, :post_text)
     end
 
 end

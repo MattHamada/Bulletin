@@ -19,13 +19,6 @@ describe 'Topic Pages' do
   describe 'Create new topic' do
     before { click_link 'New topic' }
 
-    describe 'invalid with no title' do
-      before do
-        fill_in 'topic_post_text', with: 'My new post'
-        click_button 'Create'
-      end
-      it { should have_content "Title can't be blank" }
-    end
     describe 'invalid with title < 2 char' do
       before do
         fill_in 'topic_title', with: 'a'
@@ -56,6 +49,10 @@ describe 'Topic Pages' do
         click_button 'Create'
       end
       it { should have_content 'too long' }
+    end
+    describe 'with invalid sizes for both' do
+      before { click_button 'Create' }
+      it { should have_content '2 errors' }
     end
     describe 'valid with proper length for title and content' do
       before do
