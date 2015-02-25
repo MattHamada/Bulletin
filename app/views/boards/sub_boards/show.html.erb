@@ -14,8 +14,13 @@
           <tr>
             <td><%= link_to topic.title, topic_path(topic) %></td>
             <td><%= topic.creator_username %></td>
-            <td><%= topic.created_at_pretty %></td>
-            <td><%= topic.updated_at_pretty %></td>
+            <% if @current_user.nil? %>
+              <td><%= topic.created_at.pretty_time %></td>
+              <td><%= topic.updated_at.pretty_time %></td>
+            <% else %>
+              <td><%= topic.created_at.in_time_zone(@current_user.timezone).pretty_time %></td>
+              <td><%= topic.updated_at.in_time_zone(@current_user.timezone).pretty_time %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
