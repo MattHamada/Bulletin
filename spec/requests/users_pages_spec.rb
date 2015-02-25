@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'helpers/has_image'
+require 'helpers/sign_in_user'
 
 describe 'Create Account' do
   let(:forum) { FactoryGirl.create(:forum) }
@@ -66,6 +67,32 @@ describe 'Create Account' do
     it { should have_content user.email }
     it { should have_image 'default/missing.png'}
     it { should have_content user.post_count }
+  end
+
+  describe 'Edit user page' do
+    before do
+      user.save
+      sign_in_user
+      click_link 'My account'
+      click_link 'Edit'
+    end
+    it { should have_content 'Edit Account' }
+
+    describe 'Editing user' do
+      describe 'must enter password to make changes' do
+        before { click_button 'Update' }
+        it { should have_content 'contains 1 error' }
+      end
+
+      describe 'Attributes update with a valid password' do
+        before do
+          fill_in  'user_email', with: 'newmail@newmail.new'
+          fill_in  'user_password', with: user.password
+          click_button 'Update'
+        end
+        it { should have_content 'newmail@newmail.new'}
+      end
+    end
   end
 
   describe 'Sign in user' do

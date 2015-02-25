@@ -23,6 +23,11 @@
             <div class="col-md-4"><b>Post Count:</b></div>
             <div class="col-md-8"><b><%= @user.post_count %></b></div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+              <%= link_to 'Edit', edit_user_path(@user) if current_user ==  @user %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

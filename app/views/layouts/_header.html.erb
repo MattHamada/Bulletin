@@ -3,9 +3,16 @@
     <h1><%=link_to Forum.first.name, root_path%></h1>
   </div>
   <div class="col-md-4 col-md-offset-4">
-    <%= link_to 'Sign in', signin_path if current_user.nil? %> <br/>
-    <%= link_to 'Create account', new_user_path if current_user.nil? %>
-    <%= link_to 'Sign out', signout_path, method: :delete unless current_user.nil? %>
+    <ul class="list-inline">
+      <% if current_user.nil? %>
+        <li><%= link_to 'Sign in', signin_path %></li>
+        <li><%= link_to 'Create account', new_user_path %></li>
+      <% else %>
+        <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
+        <li><%= link_to 'My account', user_path(current_user) %></li>
+      <% end %>
+    </ul>
+
   </div>
   <div class="row">
     <div class="col-md-12">
