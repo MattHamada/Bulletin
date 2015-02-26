@@ -3,9 +3,22 @@
     <div class="container">
       <hr/>
       <h3><%= board.title %></h3>
-      <% board.sub_boards.each do |sub_board| %>
-        <%= link_to "#{sub_board.title}", board_sub_board_path(board, sub_board) %><br/>
-      <% end %>
+      <table class="table table-striped">
+        <col style="width: 75%">
+        <col style="width: 25%">
+        <tr>
+          <th>Category</th>
+          <th>Last Post</th>
+        </tr>
+        <tbody>
+        <% board.sub_boards.each do |sub_board| %>
+          <tr>
+            <td><%= link_to "#{sub_board.title}", board_sub_board_path(board, sub_board) %></td>
+            <td><%= sub_board.last_post_time %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
   <% end %>
 </div>

@@ -15,5 +15,4 @@ module TimeFormatting
   def pretty(attribute)
     self.send(attribute).strftime('%F %I:%M%p')
   end
-
 end

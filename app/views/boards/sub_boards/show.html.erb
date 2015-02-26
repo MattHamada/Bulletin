@@ -3,6 +3,10 @@
     <div class="col-md-4"><%= link_to 'New topic', new_topic_path(sub_board_id: @sub_board.id) unless current_user.nil?%></div>
   </div>
   <table class="table table-striped">
+    <col style="width: 60%">
+    <col style="width: 10%">
+    <col style="width: 10%">
+    <col style="width: 10%">
       <tr>
         <th>Topic</th>
         <th>Created By</th>
@@ -13,10 +17,10 @@
         <% @topics.each do |topic| %>
           <tr>
             <td><%= link_to topic.title, topic_path(topic) %></td>
-            <td><%= topic.creator_username %></td>
+            <td><%= link_to topic.creator_username, user_path(topic.creator) %></td>
             <% if @current_user.nil? %>
-              <td><%= topic.created_at.pretty_time %></td>
-              <td><%= topic.updated_at.pretty_time %></td>
+              <td><%= topic.created_at_pretty %></td>
+              <td><%= topic.updated_at_pretty %></td>
             <% else %>
               <td><%= topic.created_at.in_time_zone(@current_user.timezone).pretty_time %></td>
               <td><%= topic.updated_at.in_time_zone(@current_user.timezone).pretty_time %></td>
