@@ -9,10 +9,9 @@ class TopicsController < ApplicationController
   end
 
   def create
-    post_text = params[:topic][:post_text]
     @topic = Topic.new(topic_params)
     @topic.creator_id = current_user.id
-    @post = Post.new(content: post_text,
+    @post = Post.new(content: params[:topic][:post][:content],
                         user_id: current_user.id)
     if @post.valid? && @topic.save
       @post.topic_id = @topic.id
@@ -22,7 +21,6 @@ class TopicsController < ApplicationController
       @topic.errors.messages.merge!(@post.errors.messages) unless @topic.valid?
       render new_topic_path
     end
-
   end
 
   def show

@@ -22,7 +22,7 @@ describe 'Topic Pages' do
     describe 'invalid with title < 2 char' do
       before do
         fill_in 'topic_title', with: 'a'
-        fill_in 'topic_post_text', with: 'My new post'
+        fill_in 'topic_post_content', with: 'My new post'
         click_button 'Create'
       end
       it { should have_content 'too short' }
@@ -30,7 +30,7 @@ describe 'Topic Pages' do
     describe 'invalid with title > 100 char' do
       before do
         fill_in 'topic_title', with: 'a' * 101
-        fill_in 'topic_post_text', with: 'My new post'
+        fill_in 'topic_post_content', with: 'My new post'
         click_button 'Create'
       end
       it { should have_content 'too long' }
@@ -45,7 +45,7 @@ describe 'Topic Pages' do
     describe 'invalid with content > 1024 char' do
       before do
         fill_in 'topic_title', with: 'hey there'
-        fill_in 'topic_post_text', with: 'a' * 1025
+        fill_in 'topic_post_content', with: 'a' * 1025
         click_button 'Create'
       end
       it { should have_content 'too long' }
@@ -57,7 +57,7 @@ describe 'Topic Pages' do
     describe 'valid with proper length for title and content' do
       before do
         fill_in 'topic_title', with: 'my new topic'
-        fill_in 'topic_post_text', with: 'my post content'
+        fill_in 'topic_post_content', with: 'my post content'
         click_button 'Create'
       end
       it { should_not have_content 'invalid' }

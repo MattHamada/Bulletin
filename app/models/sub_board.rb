@@ -12,4 +12,12 @@ class SubBoard < ActiveRecord::Base
     errors.add(:title, 'Sub-board title must be unique in board') unless
         self.board.sub_boards.where(title: self.title).count < 2
   end
+
+  def last_post_time
+    if self.topics.empty?
+      ""
+    else
+      self.topics.order_by_time.first.updated_at_pretty
+    end
+  end
 end

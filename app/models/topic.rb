@@ -3,9 +3,12 @@ require 'time_formatting'
 class Topic < ActiveRecord::Base
   include TimeFormatting
 
+
   has_many   :posts, dependent: :destroy
   belongs_to :creator, class_name: 'User'   #topic creator
   belongs_to :sub_board
+
+  accepts_nested_attributes_for :posts
 
   delegate :username, to: :creator, prefix: true
 
