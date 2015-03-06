@@ -10,8 +10,8 @@ describe Topic do
   it { should respond_to :posts }
   it { should respond_to :post_count }
 
-  describe 'name vailidity' do
-    describe 'name cannot be blank' do
+  describe 'title vailidity' do
+    describe 'title cannot be blank' do
       before { @topic.title = '' }
       it { should_not be_valid }
     end

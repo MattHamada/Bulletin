@@ -27,4 +27,16 @@ FactoryGirl.define do
     password_confirmation 'Qwerty123'
     signature             'Boo Radley was here'
   end
+
+  factory :private_message do
+    title        'My PM'
+    creator_id   1
+    recipient_id 2
+  end
+
+  factory :private_post do
+    content  Faker::Lorem.paragraph(3)
+    user_id 1
+    private_message_id 1
+  end
 end

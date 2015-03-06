@@ -9,9 +9,15 @@ Bulletin::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',   via: 'delete'
 
   resources :sessions, only: [:new, :create, :destroy]
+
   resources :topics do
     resources :posts, controller: 'topics/posts'
   end
+
+  resources :private_messages do
+    resources :private_posts, controller: 'private_messages/private_posts'
+  end
+
   resources :users
 
   resources :boards do

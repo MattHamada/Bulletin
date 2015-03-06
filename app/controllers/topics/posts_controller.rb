@@ -13,7 +13,7 @@ class Topics::PostsController < ApplicationController
     @post.topic = @topic
     @post.user = current_user
     if @post.save
-      redirect_to topic_path(@post.topic)
+      redirect_to topic_path(@topic)
     else
       render 'topics/posts/new'
     end

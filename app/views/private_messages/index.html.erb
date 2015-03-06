@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table table-striped">
+    <col style="width: 60%">
+    <col style="width: 10%">
+    <col style="width: 10%">
+    <col style="width: 10%">
+    <tr>
+      <th>Message</th>
+      <th>User</th>
+      <th>Created At</th>
+      <th>Last Post</th>
+    </tr>
+    <tbody>
+      <% @private_messages.each do |pm| %>
+        <tr>
+          <td><%= link_to pm.title, private_message_path(pm) %></td>
+          <% if pm.creator == current_user %>
+            <td><%= link_to pm.recipient_username, user_path(pm.recipient) %></td>
+          <% else %>
+            <td><%= link_to pm.creator_username, user_path(pm.creator) %></td>
+          <% end %>
+          <td><%= pm.created_at.in_time_zone(@current_user.timezone).pretty_time %></td>
+          <td><%= pm.updated_at.in_time_zone(@current_user.timezone).pretty_time %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

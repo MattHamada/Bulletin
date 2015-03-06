@@ -25,7 +25,10 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <%= link_to 'Edit', edit_user_path(@user) if current_user ==  @user %>
+              <ul class="list-inline">
+                <td><%= link_to 'Edit', edit_user_path(@user) if current_user ==  @user %></td>
+                <td><%= link_to 'Send private message', new_private_message_path(recipient_id: @user.id) if current_user && @current_user != @user %></td>
+              </ul>
             </div>
           </div>
         </div>

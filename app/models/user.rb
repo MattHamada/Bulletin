@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     slug
   end
 
+  def private_messages
+    PrivateMessage.wheree
+  end
+
   private
 
   def create_remember_token

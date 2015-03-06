@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>New Private Message to <%= @recipient.username %></strong>
+        </div>
+        <div class="panel-body">
+          <%= form_for(@private_message, html: { class: 'form', role: 'form' }) do |f| %>
+            <%= render 'layouts/errors', object: @private_message if @private_message.errors.any? %>
+            <%= render 'layouts/errors', object: @private_post unless @private_message.errors.any?  %>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-1">
+                <div class="form-group">
+                  <%= f.label(:title) %>
+                  <%= f.text_field :title, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-1">
+                <div class="form-group">
+                  <%= f.fields_for @private_post do |builder| %>
+                    <%= builder.label(:content) %>
+                    <%= builder.text_area(:content, class: 'form-control') %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <%= f.hidden_field :recipient_id, value: @private_message.recipient_id %>
+            <div class="form-group">
+              <div style="text-align: center">
+                <%= f.submit 'Send', class: 'btn btn-lg btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
